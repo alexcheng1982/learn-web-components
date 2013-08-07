@@ -8,6 +8,7 @@ Clone the repository and use a HTTP server to host these static files. For examp
 ```
 python -m SimpleHTTPServer
 ```
+You can also use Apache or other servers.
 
 ## Examples
 
