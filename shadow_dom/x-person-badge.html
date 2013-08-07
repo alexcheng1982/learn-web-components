@@ -1,0 +1,45 @@
+<element name="x-person-badge">
+    <template>
+        <style>
+            .twitter {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: transparent url(//abs.twimg.com/a/1375391966/images/b2_btn_icon.gif) 0 0 no-repeat; 
+                vertical-align: middle;
+            }
+            .media-body div {
+                padding: 2px 0;
+            }
+        </style>
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><content select=".name"></content></h4>
+                <div><span class="glyphicon glyphicon-envelope"></span><content select=".email"></div>
+                <div><span><i class="twitter"></i>@<content select=".twitter-handle"></content></span></div>
+            </div>
+        </div>
+    </template>
+    <script>
+        if (this !== window) {
+            var templateNode = this.querySelector('template');
+            this.register({
+                prototype : {
+                    readyCallback: function() {
+                        var shadow = this.createShadowRoot();
+                        shadow.applyAuthorStyles = true;
+                        shadow.resetStyleInheritance = false;
+                        var email = this.querySelector('.email').textContent;
+                        var avatarUrl = 'http://www.gravatar.com/avatar/' + md5(email);
+                        var node = templateNode.content.cloneNode(true);
+                        node.querySelector('.media-object').src = avatarUrl;
+                        shadow.appendChild(node);
+                    }
+                }
+            });    
+        }
+    </script>
+</element>

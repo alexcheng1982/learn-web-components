@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Shadow DOM Basic</title>
+        <style>
+            h2 {
+                color: #f00;    
+            }
+        </style>
+    </head>
+    <body>
+        <div id="shadow-host">
+            <h2>Shadow host</h2>
+        </div>
+        <script>
+            var shadow = document.querySelector('#shadow-host').webkitCreateShadowRoot();
+            shadow.innerHTML = "<h2>Before</h2><content></content><h2>After</h2>";
+        </script>
+    </body>
+</html>
