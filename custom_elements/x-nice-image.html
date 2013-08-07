@@ -1,0 +1,33 @@
+<element name="x-nice-image">
+    <div class="image-container">
+        <div class="thumbnail">
+            <img src="" alt="">
+            <div class="caption">
+                <h3></h3>
+                <p></p>
+                By <span><a href="" target="_blank"></a></span>
+            </div>
+        </div>
+    </div>    
+    <script>
+        if (this !== window) {
+            var containerNode = this.querySelector(".image-container"),
+                imgNode = this.querySelector('img'),
+                titleNode = this.querySelector('h3'),
+                descriptionNode = this.querySelector('p'),
+                authorNode = this.querySelector('a');
+            this.register({
+                prototype : {
+                    readyCallback : function() {
+                        imgNode.src = this.getAttribute('src');
+                        titleNode.textContent = this.getAttribute('title') || '';
+                        descriptionNode.textContent = this.getAttribute('description') || '';
+                        authorNode.href = this.getAttribute('author-url') || '';
+                        authorNode.textContent = this.getAttribute('author-name') || '';
+                        this.innerHTML = containerNode.innerHTML;
+                    }
+                }
+            });
+        }
+    </script>
+</element>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Custom Elements</title>
+        <meta charset="utf-8">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="import" href="x-nice-image.html">
+        <style>
+            x-nice-image {
+                padding : 10px;    
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Custom Elements</h1>
+            <div class="well">
+                <x-nice-image src="http://farm6.staticflickr.com/5221/5796757101_e6acb81d64.jpg" 
+                    title="Waterfalls" description="Waterfalls"
+                    author-name="Sean MacEntee" author-url="http://www.flickr.com/photos/smemon/"></x-nice-image>
+                <x-nice-image src="http://farm6.staticflickr.com/5007/5295938802_d502d2448e.jpg" 
+                    title="Waterfall HDR" description="Waterfall HDR in Animal Kingdom, Diney World"
+                    author-name="Sean MacEntee" author-url="http://www.flickr.com/photos/smemon/"></x-nice-image>
+            </div>
+        </div>
+        <script src="../js/polymer.min.js"></script>
+    </body>
+</html>
