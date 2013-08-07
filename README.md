@@ -12,6 +12,20 @@ You can also use Apache or other servers.
 
 ## Examples
 
-### Basic HTML Templates
+### HTML Templates
 
+* Basic HTML templates
+
+### Custom Elements
+
+* `x-nice-image` custom element
+
+### Shadow DOM
+
+* Shadow DOM basic example
+* `x-person-badge`
+
+### Polymer
+
+* Feed reader
 
