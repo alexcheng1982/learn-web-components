@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Basic HTML Templates</title>
+        <meta charset="utf-8">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Basic HTML Templates</h1>
+            <div class="well" id="user-container">
+                
+            </div>
+        </div>
+        <template id="user-template">
+            <div class="list-group">
+                <a class="list-group-item" href="#">
+                    <h4 class="list-group-item-heading active"></h4>
+                    <p class="list-group-item-text"></p>
+                </a> 
+            </div>
+        </template>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script>
+            $(function() {
+                var template = document.querySelector('#user-template');
+                var containerNode = document.querySelector('#user-container');
+                var userNode = template.content.cloneNode(true);
+                userNode.querySelector('h4').textContent = 'Fu Cheng';
+                userNode.querySelector('p').textContent = 'alexcheng1982@gmail.com';
+                containerNode.appendChild(userNode);
+            });
+        </script>
+    </body>
+</html>
