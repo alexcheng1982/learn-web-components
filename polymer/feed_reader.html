@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Feed Reader</title>
+        <meta charset="utf-8">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="import" href="x-feed-reader.html">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Feed Reader</h1>
+            <div class="container">
+                <div id="feed-source-selector">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Select Feed Source <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li data-url="http://rss.news.yahoo.com/rss/topstories"><a href="#">Yahoo! News</a></li>
+                        <li data-url="http://rss.nzherald.co.nz/rss/xml/nzhrsscid_000000002.xml"><a href="#">NZ Herald World</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="well">
+                    <x-feed-reader></x-feed-reader>
+                </div>
+            </div>   
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+        <script src="../js/polymer.min.js"></script>
+        <script>
+            $(function() {
+                $('#feed-source-selector').on('click', '.dropdown-menu li', function() {
+                    var url = $(this).data('url');
+                    document.querySelector('x-feed-reader').setAttribute('url', url);
+                });    
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<link rel="import" href="polymer-jsonp.html">
+<link rel="import" href="x-feed-reader-ui.html">
+<polymer-element name="x-feed-reader" attributes="url count">
+    <template>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <polymer-jsonp id="jsonp" auto url=""></polymer-jsonp>
+        <template id="items" repeat="{{items}}">
+            <div class="media">
+                <a class="pull-left" href="{{link}}">
+                    <img class="media-object" src="{{imageUrl}}">
+                </a>    
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="{{link}}">{{title}}</a></h4>
+                    <p>{{description}}</p>
+                </div>
+            </div>    
+        </template>
+    </template>
+    <script>
+        Polymer('x-feed-reader', {
+            url : '',
+            count: 10,
+            urlChanged: function() {
+                if (!this.url) {
+                    return;
+                }
+                var yql = 'select link,title,description,pubDate,content.url from rss where url="' + this.url + '" limit ' + this.count;
+                var yqlQuery = '//query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(yql) + '&format=json&callback=';
+                this.$.jsonp.url = yqlQuery;
+                var feedReader = this.$.items;
+                this.$.jsonp.addEventListener("polymer-response", 
+                    function(e) {
+                        var response = e.detail.response,
+                            items = response.query.results.item || [],
+                            regex = /(<([^>]+)>)/ig;
+                        for (var i = 0, n = items.length; i < n; i++) {
+                            items[i].imageUrl = (items[i].content && items[i].content.url) || '';
+                            items[i].description = items[i].description.replace(regex, '');
+                        }    
+                        feedReader.model = {
+                            items : items
+                        };    
+                    }
+                );
+            }
+        });
+    </script>
+</polymer-element>
